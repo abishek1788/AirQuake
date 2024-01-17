@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Air Quake Simulations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 60px;
+            background: #262626;
+            padding: 0 50px;
+        }
+
+        .logo {
+            width: 35%;
+            float: left;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 60px;
+            font-size: 35px;
+            font-family: sans-serif;
+        }
+
+        nav {
+            width: 65%;
+            float: right;
+        }
+
+        nav ul li {
+            display: inline-block
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0 10px;
+            line-height: 60px;
+            text-transform: uppercase;
+        }
+
+        .banner {
+            display: inline-block;
+            height: 33%;
+        }
+
+        .image {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        .banner::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /*.banner img{
+                width:100%;
+                height: 90vh;
+            }*/
+        .content {
+            padding: 5%;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.7;
+            font-family: sans-serif;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 15px 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Air Quake Simulations</div>
+
+        <nav>
+            <ul>
+                <li><a href="{{url_for('views.home')}}">Home</a></li>
+                <li><a href="{{url_for('views.portfolio')}}">Portfolio</a></li>
+                <li><a href="{{url_for('views.dashboards')}}">Dashboards</a></li>
+                <li><a href="{{url_for('views.add_expense')}}">Expense Demo</a></li>
+                <li><a href="{{url_for('views.chart')}}">Chart</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <div class="image">
+
+            <img src="{{url_for('static', filename='DesignLeft.PNG')}}" style="width:100%" />
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='DesignCenter.PNG')}}" style="width:100%" />
+        </div>
+        <div class="image">
+            <img src="{{url_for('static', filename='DesignRight.PNG')}}" style="width:100%" />
+        </div>
+
+    </div>
+
+    <div class="content">
+        <p>All products were designed with Autodesk Fusion360, completely to scale. This is the cockpit for the F/18C,
+            broken down to left console, right console, and center console. Each are available for purchase individually
+            or the entire cockpit together. Expected lead time is 28 days.</p>
+    </div>
+    <footer>
+        <p>All Right Reserved By Air Quake Simulations</p>
+    </footer>
+</body>
+
+</html>

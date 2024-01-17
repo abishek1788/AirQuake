@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Air Quake Simulations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 60px;
+            background: #262626;
+            padding: 0 50px;
+        }
+
+        .logo {
+            width: 35%;
+            float: left;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 60px;
+            font-size: 35px;
+            font-family: sans-serif;
+        }
+
+        nav {
+            width: 65%;
+            float: right;
+        }
+
+        nav ul li {
+            display: inline-block
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0 10px;
+            line-height: 60px;
+            text-transform: uppercase;
+        }
+
+        .banner {
+            display: inline-block;
+            height: 33%;
+        }
+
+        .image {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        .banner::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /*.banner img{
+                width:100%;
+                height: 90vh;
+            }*/
+        .content {
+            padding: 5%;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.7;
+            font-family: sans-serif;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 15px 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <header>
+        <div class="logo">Air Quake Simulations</div>
+
+        <nav>
+            <ul>
+                <li><a href="{{url_for('views.home')}}">Home</a></li>
+                <li><a href="{{url_for('views.portfolio')}}">Portfolio</a></li>
+                <li><a href="{{url_for('views.dashboards')}}">Dashboards</a></li>
+                <li><a href="{{url_for('views.add_expense')}}">Expense Demo</a></li>
+                <li><a href="{{url_for('views.chart')}}">Chart</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <div class="content">
+        <p>
+            Please input integers. It will automaticall store into the Database, and if done correctly will reroute you to the Home page. To add more entries, come back to expense demo site and add another entry.
+        </p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% with messages = get_flashed_messages(with_categories = True) %}
+                {% if messages %}
+                    {% for category, messages in messages %}
+                        <div class="alert-alert-{{category}}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="col-xs-10 col-sm-6 col-md-6 ml-auto mr-auto">
+                <div class="card card-style mb-2">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {{ form.csrf_token() }}
+                            <fieldset class="form-group">
+                                <legend class="mb-4">Expenses And Incomes</legend>
+                                <div class="form-group">
+                                    {{ form.amount.label(class="form-control-label") }}
+                                    {% if form.amount.errors %}
+                                    {{ form.amount(class="form-control form-control-sm is-invalid") }}
+                                    {% for error in form.amount.errors %}
+                                    <div class="invalid-feedback">
+                                        <span>{{error}}</span>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.amount(class="form-control form-control-sm") }}
+                                    {% endif %}
+                                </div>
+                        
+                                <div class="form-group">
+                                    {{ form.type.label(class = "form-control-label") }}
+                                    {{ form.type(class = "form-control form-control-sm") }}
+                                </div>
+                        
+                                <div class="form-group">
+                                    {{ form.category.label(class = "form-control-label") }}
+                                    {{ form.category(class = "form-control form-control-sm") }}
+                                </div>
+                        
+                                <div class="form-group border-bottom pb-3">
+                                    {{ form.submit(class="btn btn-outline-info")}}
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>All Right Reserved By Air Quake Simulations</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

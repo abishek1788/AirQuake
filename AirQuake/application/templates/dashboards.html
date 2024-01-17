@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Air Quake Simulations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 60px;
+            background: #262626;
+            padding: 0 50px;
+        }
+
+        .logo {
+            width: 35%;
+            float: left;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 60px;
+            font-size: 35px;
+            font-family: sans-serif;
+        }
+
+        nav {
+            width: 65%;
+            float: right;
+        }
+
+        nav ul li {
+            display: inline-block
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0 10px;
+            line-height: 60px;
+            text-transform: uppercase;
+        }
+
+        .banner {
+            display: inline-block;
+            height: 33%;
+        }
+
+        .image {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        .banner::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /*.banner img{
+                width:100%;
+                height: 90vh;
+            }*/
+        .content {
+            padding: 5%;
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.7;
+            font-family: sans-serif;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 15px 50px;
+            text-align: center;
+        }
+    </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+        integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Air Quake Simulations</div>
+
+        <nav>
+            <ul>
+                <li><a href="{{url_for('views.home')}}">Home</a></li>
+                <li><a href="{{url_for('views.portfolio')}}">Portfolio</a></li>
+                <li><a href="{{url_for('views.dashboards')}}">Dashboards</a></li>
+                <li><a href="{{url_for('views.add_expense')}}">Expense Demo</a></li>
+                <li><a href="{{url_for('views.chart')}}">Chart</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="col-sm-10 ml-auto mr-auto ">
+        <H2>Transaction History</H2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                        <tr>
+                            <th scope="row">{{loop.index}}</th>
+                            <td>{{entry.date.strftime("%m-%d-%Y")}}</td>
+                            <td>{{entry.type}}</td>
+                            <td>{{ entry.category }}</td>
+                            <td>{{ entry.amount }}</td>
+                            <td><a href="{{url_for('views.delete' , entry_id = entry.id )}}" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                        </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    <footer>
+        <p>All Right Reserved By Air Quake Simulations</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
